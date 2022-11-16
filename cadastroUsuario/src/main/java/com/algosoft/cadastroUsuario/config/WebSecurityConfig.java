@@ -1,4 +1,4 @@
-package com.algosoft.cadastroUsuario.model.config;
+package com.algosoft.cadastroUsuario.config;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
