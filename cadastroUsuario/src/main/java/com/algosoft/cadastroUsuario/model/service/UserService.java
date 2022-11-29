@@ -1,10 +1,12 @@
 package com.algosoft.cadastroUsuario.model.service;
 
 import com.algosoft.cadastroUsuario.model.dto.RegisterDTO;
+import com.algosoft.cadastroUsuario.model.entity.Financial;
 import com.algosoft.cadastroUsuario.model.entity.User;
 import com.algosoft.cadastroUsuario.model.repository.UserRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -13,9 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.server.ResponseStatusException;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Objects;
+import java.util.*;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -28,6 +28,11 @@ public class UserService implements UserDetailsService {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
     }
+
+    public List<User> findAll() {
+        return userRepository.findAll();
+    }
+
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -89,4 +94,18 @@ public class UserService implements UserDetailsService {
         }
     }
 
+    public User findByUsername(String username) {
+        return getByUsername(username);
+
+    }
+
+    private User getByUsername(String username) {
+        Optional<User> usernameFinded = userRepository.findByUsername(username);
+
+        if (usernameFinded.isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
+
+        return usernameFinded.get();
+    }
 }

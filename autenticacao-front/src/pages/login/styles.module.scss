@@ -1,0 +1,164 @@
+// Layout of project
+
+// Container-devices
+$container-xl: 1440px;
+$container-l: 1216px;
+$tablet: 1024px;
+$container-m: 960px;
+$container-s: 620px;
+$container-xs: 340px;
+$gutter: 32px;
+
+// Mixin of media-queries
+@mixin responsive($device) {
+
+
+    @if $device ==xl {
+
+        // For resolutions upper 1440px
+        @media screen and (min-width: $container-xl) {
+            @content;
+        }
+    }
+
+    @else if $device ==ul {
+
+        // For resolutions upper 960px
+        @media screen and (min-width: $container-m) {
+            @content;
+        }
+    }
+
+    @else if $device ==l {
+
+        // For resolutions between 1140px and 1440px
+        @media screen and (max-width: $container-xl) and (min-width: $container-l) {
+            @content;
+        }
+    }
+
+
+    @else if $device ==m {
+
+        // For resolutions between 960px and 1140px
+        @media screen and (max-width: $container-l) and (min-width: $container-s) {
+            @content;
+        }
+    }
+
+
+    @else if $device ==s {
+
+        // For resolutions less than 960px
+        @media screen and (max-width: $container-m) {
+            @content;
+        }
+    }
+
+
+    @else if $device ==xs {
+
+        // For resolutions less than 340px
+        @media screen and (max-width: $container-xs) {
+            @content;
+        }
+    }
+
+    @else if $device ==tablet {
+
+        // For resolutions less than 340px
+        @media screen and (max-width: $tablet) {
+            @content;
+        }
+    }
+}
+
+.container {
+    background-image: url("../../img/purpleDream.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-between;
+
+    @include responsive(s) {
+        background-image: none;
+        background-color: #2F3135;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+    }
+
+}
+
+.form {
+    background-color: #2F3135;
+    width: 50vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    @include responsive(s) {
+        width: 80vw;
+        height: 60vh;
+        flex: 1;
+        background-color: transparent;
+    }
+
+    @include responsive(tablet) {
+        width: 50vw;
+        height: 100vh;
+        flex: 1;
+    }
+
+}
+
+.containerHeader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+
+    @include responsive(s) {
+        .avatar {
+            display: none;
+        }
+
+        .typography {
+            font-size: 1.7rem;
+        }
+    }
+
+    @include responsive(tablet) {
+        .avatar {
+            display: none;
+        }
+
+
+    }
+
+
+}
+
+.linkBox {
+    margin-top: 1rem;
+
+
+    @include responsive(s) {
+        .link {
+            width: 30vw;
+            font-size: 0.9rem
+        }
+    }
+
+}

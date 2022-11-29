@@ -1,0 +1,113 @@
+// Layout of project
+
+// Container-devices
+$container-xl: 1440px;
+$container-l: 1216px;
+$tablet: 1024px;
+$container-m: 960px;
+$container-s: 620px;
+$container-xs: 340px;
+$gutter: 32px;
+
+// Mixin of media-queries
+@mixin responsive($device) {
+
+
+    @if $device ==xl {
+
+        // For resolutions upper 1440px
+        @media screen and (min-width: $container-xl) {
+            @content;
+        }
+    }
+
+    @else if $device ==ul {
+
+        // For resolutions upper 960px
+        @media screen and (min-width: $container-m) {
+            @content;
+        }
+    }
+
+    @else if $device ==l {
+
+        // For resolutions between 1140px and 1440px
+        @media screen and (max-width: $container-xl) and (min-width: $container-l) {
+            @content;
+        }
+    }
+
+
+    @else if $device ==m {
+
+        // For resolutions between 960px and 1140px
+        @media screen and (max-width: $container-l) and (min-width: $container-s) {
+            @content;
+        }
+    }
+
+
+    @else if $device ==s {
+
+        // For resolutions less than 960px
+        @media screen and (max-width: $container-m) {
+            @content;
+        }
+    }
+
+
+    @else if $device ==xs {
+
+        // For resolutions less than 340px
+        @media screen and (max-width: $container-xs) {
+            @content;
+        }
+    }
+
+    @else if $device ==tablet {
+
+        // For resolutions less than 340px
+        @media screen and (max-width: $tablet) {
+            @content;
+        }
+    }
+}
+
+
+
+
+
+.container {
+    background-color: #35373B;
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include responsive(s){
+        display: none;
+    }
+
+    .link {
+        width: 20%;
+        display: flex;
+        justify-content: center;
+        text-decoration: none;
+        transition: .3s ease;
+        cursor: pointer;
+
+
+        &:hover {
+            color: #e200e2
+        }
+    }
+
+    .tipography{
+    @include responsive(tablet){
+        margin-top: 0.25rem;
+        font-size: 0.7rem;
+
+    }   
+}
+
+}

@@ -22,14 +22,20 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
     private final AuthenticationManager authenticationManager;
     private final PasswordEncoder passwordEncoder;
     private final UserDetailsService userDetailsService;
+    private final CustomWebResponseExceptionTranslator exceptionTranslator;
+    private final CustomOAuth2AuthenticationEntryPoint authenticationEntryPoint;
+    private final CustomOAuth2AccessDeniedHandler accessDeniedHandler;
 
 
     public AuthServerConfig(AuthenticationManager authenticationManager,
                             PasswordEncoder passwordEncoder,
-                            @Qualifier("userService") UserDetailsService userDetailsService) {
+                            @Qualifier("userService") UserDetailsService userDetailsService, CustomWebResponseExceptionTranslator exceptionTranslator, CustomOAuth2AuthenticationEntryPoint authenticationEntryPoint, CustomOAuth2AccessDeniedHandler accessDeniedHandler) {
         this.authenticationManager = authenticationManager;
         this.passwordEncoder = passwordEncoder;
         this.userDetailsService = userDetailsService;
+        this.exceptionTranslator = exceptionTranslator;
+        this.authenticationEntryPoint = authenticationEntryPoint;
+        this.accessDeniedHandler = accessDeniedHandler;
     }
 
     @Override
@@ -37,7 +43,9 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
         security.passwordEncoder(this.passwordEncoder)
                 .realm("api")
                 .tokenKeyAccess("permitAll()")
-                .checkTokenAccess("isAuthenticated()");
+                .checkTokenAccess("permitAll()")
+                .authenticationEntryPoint(this.authenticationEntryPoint)
+                .accessDeniedHandler(this.accessDeniedHandler);
     }
 
     @Override
@@ -45,8 +53,8 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
         clients.inMemory()
                 .withClient("admin")
                 .secret(this.passwordEncoder.encode("admin"))
-                .accessTokenValiditySeconds(30)
-                .refreshTokenValiditySeconds(60)
+                .accessTokenValiditySeconds(3000)
+                .refreshTokenValiditySeconds(6000)
                 .authorizedGrantTypes("password", "authorization_code", "refresh_token")
                 .scopes("any")
                 .resourceIds("api");
@@ -57,7 +65,8 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
         endpoints.accessTokenConverter(this.accessTokenConverter())
                 .tokenStore(this.tokenStore())
                 .userDetailsService(this.userDetailsService)
-                .authenticationManager(this.authenticationManager);
+                .authenticationManager(this.authenticationManager)
+                .exceptionTranslator(this.exceptionTranslator);
     }
 
     @Bean

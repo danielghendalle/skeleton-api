@@ -8,6 +8,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @RestController
 @RequestMapping(UserController.PATH)
@@ -46,4 +47,10 @@ public class UserController {
         this.userService.deleteById(id);
     }
 
+    @PreAuthorize("hasAuthority('USER_ROLE')")
+    @ResponseStatus(HttpStatus.OK)
+    @GetMapping
+    public List<User> findAll() {
+        return this.userService.findAll();
+    }
 }
