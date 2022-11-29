@@ -17,3 +17,20 @@ assim como os "Inputs" para logar, clique em adicionar um usuário caso não pos
 
 (OBS): vale ressaltar que o sistema ainda não está 100% concluído, pois alguns ajustes e testes serão feitos nos commits seguintes.
 
+#Skills utilizadas para desenvolver o mesmo :
+
+Front-end:
+1-ReactJS;
+2-MUI;
+3-React-Hook-Forms;
+4-Axios;
+5-SASS;
+6-HTML.
+
+BackEnd:
+1-Java;
+2-Spring-Boot;
+3-Spring-Security;
+
+DB:
+1-PostgresSQL.
