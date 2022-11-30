@@ -18,7 +18,7 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import { useNavigate } from "react-router-dom";
 import { CustomButton } from "./../CustomButton";
 import { destroyCookie } from "nookies";
-import ExitToAppIcon from '@mui/icons-material/ExitToApp';
+import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -97,18 +97,23 @@ const Header = () => {
                 <Typography>Usuários</Typography>
               </Stack>
             </Link>
-          <Button
-            className={styles.logoutButton}
-            onClick={Logout}
-            color="error"
-            startIcon={<ExitToAppIcon/>}
+            <Button
+              className={styles.logoutButton}
+              onClick={Logout}
+              color="error"
+              startIcon={<ExitToAppIcon />}
             >
-            Sair
-          </Button>
-            </Stack>
-              </Box>
+              Sair
+            </Button>
+          </Stack>
+        </Box>
       </Drawer>
-      <Typography variant="h4" className={styles.logo}>
+      <Typography
+        variant="h4"
+        className={styles.logo}
+        sx={{ fontWeight: "bold",
+              fontFamily: "Roboto, sans-serif" }}
+      >
         Finances
       </Typography>
     </Box>

@@ -3,7 +3,7 @@ import styles from "./styles.module.scss";
 import { Box } from "@mui/material";
 import Footer from "../../components/footer/Footer";
 import Header from "../../components/header/Header";
-import { CustomInput } from "./../../components/CustomizedInput";
+import { CustomInput } from "../../components/CustomInput";
 import { CustomButton } from "../../components/CustomButton";
 import PersonAddOutlinedIcon from "@mui/icons-material/PersonAddOutlined";
 import WestIcon from '@mui/icons-material/West';

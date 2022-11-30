@@ -81,7 +81,7 @@ const User = () => {
       <Header />
       <Box className={styles.container}>
         <Box className={styles.title}>
-          <Typography variant="h4" className={styles.typography}>Usuários</Typography>
+          <Typography variant="h4" className={styles.typography} sx={{ fontWeight:"bold"}}>Usuários</Typography>
         </Box>
         <Box className={styles.table}>
           <DataGrid

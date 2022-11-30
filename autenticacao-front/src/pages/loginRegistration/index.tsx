@@ -3,7 +3,7 @@ import { grey } from "@mui/material/colors";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { CustomButton } from "../../components/CustomButton";
-import { CustomInput } from "../../components/CustomizedInput";
+import { CustomInput } from "../../components/CustomInput";
 import HowToRegIcon from "@mui/icons-material/HowToReg";
 import WestIcon from "@mui/icons-material/West";
 //@ts-ignore

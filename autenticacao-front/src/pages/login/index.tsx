@@ -2,7 +2,7 @@ import { Box, Typography } from "@mui/material";
 import { Stack } from "@mui/system";
 //@ts-ignore
 import styles from "./styles.module.scss";
-import { CustomInput } from "../../components/CustomizedInput";
+import { CustomInput } from "../../components/CustomInput";
 import { CustomButton } from "../../components/CustomButton";
 import { grey } from "@mui/material/colors";
 import { CustomLink } from "../../components/CustomLink";
@@ -52,6 +52,7 @@ const Login = () => {
             className={styles.typography}
             variant="h4"
             color={grey[100]}
+            sx={{ fontWeight: "bold" }}
           >
             Acessar
           </Typography>
@@ -61,6 +62,7 @@ const Login = () => {
             name="username"
             label="E-mail"
             type="email"
+            variant="standard"
             {...register("username", {
               required: "O campo está incorreto verifique!",
             })}
@@ -74,7 +76,7 @@ const Login = () => {
             name="password"
             label="Senha"
             type="password"
-            variant="outlined"
+            variant="standard"
             {...register("password", {
               required: "O campo está incorreto verifique!",
             })}

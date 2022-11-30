@@ -12,7 +12,7 @@ import Footer from "../../components/footer/Footer";
 import Card from "../../components/card/Card";
 import PaidIcon from "@mui/icons-material/Paid";
 import CalculateIcon from "@mui/icons-material/Calculate";
-import { CustomInput } from "./../../components/CustomizedInput";
+import { CustomInput } from "../../components/CustomInput";
 import { CustomButton } from "../../components/CustomButton";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import { useEffect, useState } from "react";
@@ -148,7 +148,7 @@ const Dashboard = () => {
       <Box className={styles.container}>
         <Box className={styles.card}>
           <Card
-            title={"Entradas:"}
+            title={"Entradas"}
             icon={
               <PaidIcon
                 color="success"
@@ -160,7 +160,7 @@ const Dashboard = () => {
           />
 
           <Card
-            title={"Saídas:"}
+            title={"Saídas"}
             icon={
               <PaidIcon
                 color="error"
@@ -168,10 +168,10 @@ const Dashboard = () => {
                 className={styles.icon}
               />
             }
-            value={` - ${expends}`}
+            value={` -${expends}`}
           />
           <Card
-            title={"Total:"}
+            title={"Total"}
             icon={<CalculateIcon fontSize="large" className={styles.icon} />}
             value={total}
           />
@@ -196,7 +196,6 @@ const Dashboard = () => {
                 />
                 <CustomInput
                   name="value"
-                  type="number"
                   label="Valor"
                   {...register("value", {
                     required: "O campo está em branco verifique!",
