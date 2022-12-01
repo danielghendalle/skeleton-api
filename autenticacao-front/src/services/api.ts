@@ -4,7 +4,7 @@ import qs from "qs";
 import { Navigate, useNavigate } from "react-router-dom";
 
 export const api = axios.create({
-  baseURL: "http://finances-env.eba-mejtkmtj.sa-east-1.elasticbeanstalk.com",
+  baseURL: "https://finances-env.eba-mejtkmtj.sa-east-1.elasticbeanstalk.com",
   headers: {
     "access-control-allow-origin": "*",
   }
