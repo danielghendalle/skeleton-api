@@ -4,7 +4,7 @@ import qs from "qs";
 import { Navigate, useNavigate } from "react-router-dom";
 
 export const api = axios.create({
-  baseURL: "http://finances-env.eba-mejtkmtj.sa-east-1.elasticbeanstalk.com",
+  baseURL: "",
 });
 
 export async function signIn(username: any, password: any) {
@@ -16,6 +16,7 @@ export async function signIn(username: any, password: any) {
 
       {
         headers: {
+          "access-control-allow-origin" : "*",
           "Content-Type": "application/x-www-form-urlencoded",
         },
         auth: {

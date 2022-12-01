@@ -62,7 +62,6 @@ const Login = () => {
             name="username"
             label="E-mail"
             type="email"
-            variant="standard"
             {...register("username", {
               required: "O campo está incorreto verifique!",
             })}
@@ -76,7 +75,6 @@ const Login = () => {
             name="password"
             label="Senha"
             type="password"
-            variant="standard"
             {...register("password", {
               required: "O campo está incorreto verifique!",
             })}

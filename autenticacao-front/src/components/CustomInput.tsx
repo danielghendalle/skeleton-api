@@ -20,7 +20,7 @@ export const CustomInput = styled(TextField)({
     },
 
     "& fieldset": {
-      borderColor: grey[100],
+      borderColor: grey[200],
       transition: ".3s ease",
     },
   },
