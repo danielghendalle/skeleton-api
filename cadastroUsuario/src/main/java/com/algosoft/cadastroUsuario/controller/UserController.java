@@ -30,11 +30,11 @@ public class UserController {
 
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMINISTRATOR')")
     public User update(@PathVariable Long id, @RequestBody @Valid RegisterDTO registerDTO) {
         return this.userService.update(id, registerDTO);
     }
 
-    @PreAuthorize("hasAuthority('USER_ROLE')")
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("/{id}")
     public User findById(@PathVariable Long id) {
@@ -43,11 +43,12 @@ public class UserController {
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasAuthority('ADMINISTRATOR')")
     public void deleteById(@PathVariable Long id) {
         this.userService.deleteById(id);
     }
 
-    @PreAuthorize("hasAuthority('USER_ROLE')")
+
     @ResponseStatus(HttpStatus.OK)
     @GetMapping
     public List<User> findAll() {

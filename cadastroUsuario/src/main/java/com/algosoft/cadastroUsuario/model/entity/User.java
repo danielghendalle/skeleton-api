@@ -1,5 +1,6 @@
 package com.algosoft.cadastroUsuario.model.entity;
 
+import com.algosoft.cadastroUsuario.model.enums.Rules;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
@@ -20,5 +21,8 @@ public class User {
     @Column
     @JsonIgnore
     private String password;
+
+    @Enumerated(EnumType.STRING)
+    private Rules rules;
 
 }

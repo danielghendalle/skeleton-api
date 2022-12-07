@@ -3,6 +3,7 @@ package com.algosoft.cadastroUsuario.model.service;
 import com.algosoft.cadastroUsuario.model.dto.RegisterDTO;
 import com.algosoft.cadastroUsuario.model.entity.Financial;
 import com.algosoft.cadastroUsuario.model.entity.User;
+import com.algosoft.cadastroUsuario.model.enums.Rules;
 import com.algosoft.cadastroUsuario.model.repository.UserRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -37,13 +38,13 @@ public class UserService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         User user = userRepository.findByUsername(username).orElseThrow(() -> new UsernameNotFoundException("Não foi possível encontrar o usuário!"));
-        Collection<SimpleGrantedAuthority> auths = this.mapAuthorities();
+        Collection<SimpleGrantedAuthority> auths = this.mapAuthorities(user);
         return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), auths);
     }
 
-    private Collection<SimpleGrantedAuthority> mapAuthorities() {
+    private Collection<SimpleGrantedAuthority> mapAuthorities(User user) {
         Collection<SimpleGrantedAuthority> auths = new ArrayList<>();
-        auths.add(new SimpleGrantedAuthority("USER_ROLE"));
+        auths.add(new SimpleGrantedAuthority(user.getRules().toString()));
         return auths;
     }
 
@@ -63,6 +64,7 @@ public class UserService implements UserDetailsService {
         User user = new User();
         user.setUsername(registerDTO.getUsername());
         user.setPassword(this.passwordEncoder.encode(registerDTO.getPassword()));
+        user.setRules(Rules.COMMON_CLIENT);
         return user;
     }
 
