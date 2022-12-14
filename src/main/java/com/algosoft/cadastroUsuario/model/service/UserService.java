@@ -1,7 +1,6 @@
 package com.algosoft.cadastroUsuario.model.service;
 
 import com.algosoft.cadastroUsuario.model.dto.RegisterDTO;
-import com.algosoft.cadastroUsuario.model.entity.Financial;
 import com.algosoft.cadastroUsuario.model.entity.User;
 import com.algosoft.cadastroUsuario.model.enums.Rules;
 import com.algosoft.cadastroUsuario.model.repository.UserRepository;
@@ -31,7 +30,15 @@ public class UserService implements UserDetailsService {
     }
 
     public List<User> findAll() {
-        return userRepository.findAll();
+        org.springframework.security.core.userdetails.User user = (org.springframework.security.core.userdetails.User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        if (user.getAuthorities().stream().anyMatch(t -> t.getAuthority().equals(Rules.ADMINISTRATOR.name()))) {
+            return userRepository.findAll();
+
+        }
+        else {
+            return List.of(this.userRepository.findByUsername(user.getUsername()).orElse(new User()));
+        }
     }
 
 
@@ -84,10 +91,16 @@ public class UserService implements UserDetailsService {
     }
 
     public User update(Long id, RegisterDTO registerDTO) {
+
         User user = this.findById(id);
-        user.setUsername(registerDTO.getUsername());
-        this.updatePassword(registerDTO, user);
-        return this.userRepository.save(user);
+        if (findByUsername(registerDTO.getUsername()) == user) {
+            user.setUsername(registerDTO.getUsername());
+            this.updatePassword(registerDTO, user);
+            user.setRules(registerDTO.getRules());
+            return this.userRepository.save(user);
+        } else {
+            throw new ResponseStatusException(HttpStatus.CONFLICT);
+        }
     }
 
     private void updatePassword(RegisterDTO registerDTO, User user) {

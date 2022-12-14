@@ -30,7 +30,6 @@ public class UserController {
 
     @ResponseStatus(HttpStatus.OK)
     @PutMapping("/{id}")
-    @PreAuthorize("hasAuthority('ADMINISTRATOR')")
     public User update(@PathVariable Long id, @RequestBody @Valid RegisterDTO registerDTO) {
         return this.userService.update(id, registerDTO);
     }
