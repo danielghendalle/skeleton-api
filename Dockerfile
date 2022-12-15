@@ -5,5 +5,5 @@ RUN mvn -f /home/app/pom.xml clean package -DskipTests
 
 FROM openjdk:11-jdk
 COPY --from=build /home/app/target/*.jar app.jar
-EXPOSE 80:5000
+EXPOSE 5000
 ENTRYPOINT ["java", "-jar", "", "/app.jar"]
