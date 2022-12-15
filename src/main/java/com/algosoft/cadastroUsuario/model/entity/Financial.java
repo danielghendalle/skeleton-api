@@ -22,7 +22,7 @@ public class Financial {
 
     @Column
     @JsonIgnore
-    private Long owner ;
+    private Long owner;
 
     @Column(columnDefinition = "boolean default false")
     private Boolean expend;
