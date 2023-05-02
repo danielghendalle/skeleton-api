@@ -1,4 +1,4 @@
-# Documentação de utilização do Projeto Finance
+# Documentação de utilização do Projeto
 
 ### Configuração do projeto:
 1 - Inicializar o projeto em sua IDE de preferência;
