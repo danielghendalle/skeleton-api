@@ -1,4 +1,7 @@
-# Documentação de utilização do Projeto
+# Apresentação do Projeto
+
+### Apresentação: 
+O projeto skeleton-api foi desenvolvido com finalidade de aplicar os conhecimentos da linguagem Java e Integrações do projeto Spring, Spring Security, Spring Data, etc.
 
 ### Configuração do projeto:
 1 - Inicializar o projeto em sua IDE de preferência;
